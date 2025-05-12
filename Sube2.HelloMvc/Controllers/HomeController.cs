@@ -29,16 +29,11 @@ namespace Sube2.HelloMvc.Controllers
             var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             var newThisMonth = _context.Ogrenciler.Count(o => o.CreatedAt  >= firstDayOfMonth);
 
-            // Sýnýf verisi olmadýðýndan boþ dizi döndürüyoruz
-            var classDistribution = new List<object>();
-            var monthlyAdditions = new List<object>(); // Ýstersen eklenebilir
 
             return Json(new
             {
                 totalStudents,
-                newThisMonth,
-                classDistribution,
-                monthlyAdditions
+                newThisMonth
             });
         }
 
