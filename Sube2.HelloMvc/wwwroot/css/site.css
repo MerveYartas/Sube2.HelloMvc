@@ -1,0 +1,133 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+
+}
+
+/* Genel Stil */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Kýrýk beyaz arka plan */
+    color: #333333; /* Koyu gri metin */
+}
+
+/* Navbar */
+.navbar {
+    transition: all 0.3s;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ffffff !important; /* Beyaz navbar markasý */
+}
+
+/* Tablo */
+.table {
+    background-color: #ffffff; /* Beyaz tablo arka planý */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .table th {
+        background-color: #000000; /* Siyah tablo baþlýðý */
+        color: #ffffff; /* Beyaz metin */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e9ecef; /* Açýk gri hover efekti */
+    }
+
+    .table td {
+        color: #333333; /* Koyu gri tablo içeriði */
+    }
+
+/* Butonlar */
+.btn {
+    transition: all 0.3s;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+.btn-primary {
+    background: linear-gradient(45deg, #000000, #333333); /* Siyah gradient */
+    border: none;
+    color: #ffffff; /* Beyaz metin */
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #dc3545, #ff6b6b); /* Kýrmýzý gradient, kontrast için */
+    border: none;
+    color: #ffffff;
+}
+
+/* Formlar */
+.form-control {
+    border-radius: 5px;
+    background-color: #ffffff; /* Beyaz input arka planý */
+    color: #333333; /* Koyu gri metin */
+    border: 1px solid #ced4da; /* Açýk gri kenarlýk */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #000000; /* Siyah kenarlýk */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        background-color: #ffffff;
+        color: #333333;
+    }
+
+/* Kartlar */
+.card {
+    border: none;
+    border-radius: 10px;
+    background-color: #ffffff; /* Beyaz kart arka planý */
+    color: #333333; /* Koyu gri metin */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Dairesel Gösterge */
+.progress-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#000000 0%, #e9ecef 0%); /* Siyah ve açýk gri gradient */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Hafif gölge ekledim */
+}
+
+.progress-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333333; /* Koyu gri metin, kontrast için */
+}

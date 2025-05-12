@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Ogrenci>
+
+@{
+    Layout = "_Layout1";
+    ViewData["Title"] = "Öğrenci Detay";
+}
+
+<h3>Öğrenci Tablosu</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ÖĞRENCİ ID</th>
+            <th>AD</th>
+            <th>SOYAD</th>
+            <th>İŞLEM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ogr in Model)
+        {
+            <tr id="ogrenci-@ogr.Ogrenciid">
+                <td>@ogr.Ogrenciid</td>
+                <td>@ogr.Ad</td>
+                <td>@ogr.Soyad</td>
+                <td>
+                    <a href="/Ogrenci/OgrenciDetay/@ogr.Ogrenciid">Detay</a> |
+                    <a href="javascript:void(0);" class="sil-btn" data-id="@ogr.Ogrenciid" onclick="return confirm('Emin misiniz?')">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', '.sil-btn', function (e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        // Onay alınmışsa AJAX silme işlemi
+        if (confirm('Bu öğrenciyi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: '/Ogrenci/OgrenciSil',
+                type: 'POST',
+                data: { id: id },
+                success: function (response) {
+                    if (response.success) {
+                        $('#ogrenci-' + id).remove();
+                    } else {
+                        alert('Silme işlemi başarısız oldu.');
+                    }
+                },
+                error: function () {
+                    alert('Bir hata oluştu.');
+                }
+            });
+        }
+    });
+</script>
+
+
+@*     Alert: sadece ok gösteriri
+    Promt: Aldığı veriyi size dönderiri
+	Confirm: Aldığı veriyi size dönderir ve onay alır *@
+

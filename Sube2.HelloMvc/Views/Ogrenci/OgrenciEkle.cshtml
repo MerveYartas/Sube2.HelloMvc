@@ -1,0 +1,58 @@
+﻿@model Ogrenci
+
+@{
+    ViewData["Title"] = "Öğrenci Ekle";
+}
+
+<h3>Öğrenci Ekle</h3>
+
+<!-- Formu AJAX ile göndereceğiz -->
+<form id="ogrenciEkleForm">
+    <div class="mb-3">
+        <label class="form-label">Ad</label>
+        <input type="text" class="form-control" id="Ad" name="Ad" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Soyad</label>
+        <input type="text" class="form-control" id="Soyad" name="Soyad" required />
+    </div>
+    <input type="submit" class="btn btn-success" value="Kaydet" />
+</form>
+
+<!-- AJAX işlem sonucu mesajları burada göstereceğiz -->
+<div id="sonucMesaj" class="mt-3"></div>
+
+<!-- AJAX ve jQuery kodları -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Form submit işlemi
+        $('#ogrenciEkleForm').on('submit', function (e) {
+            e.preventDefault(); // Sayfanın yenilenmesini engelle
+
+            var ad = $('#Ad').val(); // Ad bilgisi
+            var soyad = $('#Soyad').val(); // Soyad bilgisi
+
+            // AJAX ile POST isteği gönderiyoruz
+            $.ajax({
+                url: '/Ogrenci/OgrenciEkle',  // Controller'daki ilgili Action'a istek göndereceğiz
+                type: 'POST',
+                data: {
+                    Ad: ad,
+                    Soyad: soyad
+                },
+                success: function (response) {
+                    // Başarılı işlemi ve sonucun ne olduğunu göstermek için
+                    if (response.success) {
+                        $('#sonucMesaj').html('<div class="alert alert-success">Öğrenci ekleme başarılı!</div>');
+                    } else {
+                        $('#sonucMesaj').html('<div class="alert alert-danger">Öğrenci ekleme hatalı!</div>');
+                    }
+                },
+                error: function () {
+                    $('#sonucMesaj').html('<div class="alert alert-danger">Bir hata oluştu!</div>');
+                }
+            });
+        });
+    });
+</script>
