@@ -6,7 +6,6 @@
 
 <h3>Öğrenci Ekle</h3>
 
-<!-- Formu AJAX ile göndereceğiz -->
 <form id="ogrenciEkleForm">
     <div class="mb-3">
         <label class="form-label">Ad</label>
@@ -19,30 +18,26 @@
     <input type="submit" class="btn btn-success" value="Kaydet" />
 </form>
 
-<!-- AJAX işlem sonucu mesajları burada göstereceğiz -->
 <div id="sonucMesaj" class="mt-3"></div>
 
-<!-- AJAX ve jQuery kodları -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Form submit işlemi
+
         $('#ogrenciEkleForm').on('submit', function (e) {
-            e.preventDefault(); // Sayfanın yenilenmesini engelle
+            e.preventDefault();
 
-            var ad = $('#Ad').val(); // Ad bilgisi
-            var soyad = $('#Soyad').val(); // Soyad bilgisi
+            var ad = $('#Ad').val(); 
+            var soyad = $('#Soyad').val();
 
-            // AJAX ile POST isteği gönderiyoruz
             $.ajax({
-                url: '/Ogrenci/OgrenciEkle',  // Controller'daki ilgili Action'a istek göndereceğiz
+                url: '/Ogrenci/OgrenciEkle', 
                 type: 'POST',
                 data: {
                     Ad: ad,
                     Soyad: soyad
                 },
                 success: function (response) {
-                    // Başarılı işlemi ve sonucun ne olduğunu göstermek için
                     if (response.success) {
                         $('#sonucMesaj').html('<div class="alert alert-success">Öğrenci ekleme başarılı!</div>');
                     } else {

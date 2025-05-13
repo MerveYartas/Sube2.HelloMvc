@@ -39,12 +39,13 @@
 
         var id = $(this).data('id');
 
-        // Onay alınmışsa AJAX silme işlemi
         if (confirm('Bu öğrenciyi silmek istediğinize emin misiniz?')) {
             $.ajax({
                 url: '/Ogrenci/OgrenciSil',
                 type: 'POST',
-                data: { id: id },
+                data: { 
+                        id: id 
+                       },
                 success: function (response) {
                     if (response.success) {
                         $('#ogrenci-' + id).remove();
@@ -60,8 +61,4 @@
     });
 </script>
 
-
-@*     Alert: sadece ok gösteriri
-    Promt: Aldığı veriyi size dönderiri
-	Confirm: Aldığı veriyi size dönderir ve onay alır *@
 

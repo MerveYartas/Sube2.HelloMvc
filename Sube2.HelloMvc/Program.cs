@@ -15,8 +15,6 @@ namespace Sube2.HelloMvc
            builder.Services.AddDbContext<OgrenciDbContext>(options =>
            options.UseSqlServer("Server=localhost;Database=OgrenciDb;Trusted_Connection=True;TrustServerCertificate=True;"));
 
-
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

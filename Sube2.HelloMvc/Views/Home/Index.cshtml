@@ -2,17 +2,16 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<!-- Karşılama Alanı -->
 <div class="text-center my-5">
     <h1 class="display-4">Sube2.HelloMvc</h1>
     <p class="lead">Öğrenci Yönetim Sistemine Hoş Geldiniz</p>
 </div>
 
-<!-- İstatistik Kartları -->
 <div class="row g-4 mb-5">
     <div class="col-md-6">
         <div class="card text-center p-3">
             <i class="fas fa-users fa-3x text-dark mb-3"></i>
+
             <h5>Toplam Öğrenci</h5>
             <p id="totalStudents" class="fw-bold">Yükleniyor...</p>
         </div>
@@ -20,17 +19,19 @@
     <div class="col-md-6">
         <div class="card text-center p-3">
             <i class="fas fa-user-plus fa-3x text-dark mb-3"></i>
+
             <h5>Bu Ay Eklenen</h5>
             <p id="newThisMonth" class="fw-bold">Yükleniyor...</p>
         </div>
     </div>
 </div>
 
-<!-- Dairesel Gösterge -->
+
 <div class="row g-4 mb-5">
     <div class="col-12 text-center">
         <div class="card">
             <div class="card-header bg-dark text-white">
+
                 <h5 class="mb-0"><i class="fas fa-tachometer-alt me-2"></i> Öğrenci Doluluk Oranı</h5>
             </div>
             <div class="card-body">
@@ -42,7 +43,7 @@
     </div>
 </div>
 
-<!-- Hızlı Erişim Butonları -->
+
 <div class="text-center mb-5">
     <a href="/Ogrenci/OgrenciEkle" class="btn btn-primary me-2"><i class="fas fa-user-plus me-2"></i> Öğrenci Ekle</a>
     <a href="/Ogrenci/OgrenciListe" class="btn btn-primary"><i class="fas fa-list me-2"></i> Öğrenci Listesi</a>
@@ -56,16 +57,15 @@
             $.ajax({
                 url: '/Home/GetStatistics',
                 type: 'GET',
-                dataType: 'json',
+                dataType: 'json', 
                 success: function (data) {
-                    // Kartları güncelle
+ 
                     $('#totalStudents').text(data.totalStudents);
                     $('#newThisMonth').text(data.newThisMonth);
 
-                    // Dairesel Gösterge
-                    const maxStudents = 30; // Örnek kapasite
+
+                    const maxStudents = 30; 
                     let percentage = (data.totalStudents / maxStudents) * 100;
-                    // Yüzdeyi 0-100 arasında sınırlandır
                     percentage = Math.min(100, Math.max(0, percentage));
                     $('#studentProgress').css('background', `conic-gradient(#000000 ${percentage}%, #e9ecef ${percentage}%)`);
                     $('.progress-text').text(Math.round(percentage) + '%');

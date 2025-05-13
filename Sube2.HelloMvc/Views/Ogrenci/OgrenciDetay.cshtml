@@ -4,7 +4,6 @@
 }
 <h1>Öğrenci Detay</h1>
 
-<!-- AJAX ile ele alacağımız form -->
 <form id="ogrenciForm">
     <input type="hidden" asp-for="Ogrenciid" />
     <div class="mb-3">
@@ -18,30 +17,22 @@
     <input type="submit" class="btn btn-success" value="Kaydet" />
 </form>
 
-<!-- Bilgi mesajı göstermek için bir alan -->
 <div id="mesajAlani"></div>
 @section Scripts {
     <script>
-        // Sayfa yüklendiğinde çalış
         document.addEventListener('DOMContentLoaded', function () {
 
-            // Formu yakala
             const form = document.getElementById('ogrenciForm');
 
-            // Form gönderilince bu fonksiyon çalışacak
             form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Sayfa yenilenmesin
+                e.preventDefault(); 
 
-                // Form verilerini nesne olarak al
                 const formData = new FormData(form);
 
-                // FormData'yı normal bir JS objesine çevir
                 const data = {};
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
-
-                // AJAX isteği gönder
                        fetch('/Ogrenci/OgrenciDetay', {
             method: 'POST',
             headers: {
@@ -53,20 +44,17 @@
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.json(); // JSON yanıt döndüğümüz için bunu kullanıyoruz
+            return response.json(); 
         })
         .then(result => {
             if (result.success) {
-                // Sunucudan gelen yönlendirme adresine git
                 window.location.href = result.redirectUrl;
             } else {
-                // Başarısız ama response.ok == true
                 document.getElementById('mesajAlani').innerHTML =
                     `<div class="alert alert-warning">Bir sorun oluştu.</div>`;
             }
         })
         .catch(error => {
-            // Hatalar burada yakalanır (örneğin 400 hatası)
             document.getElementById('mesajAlani').innerHTML =
                 `<div class="alert alert-danger">${error.message}</div>`;
         });

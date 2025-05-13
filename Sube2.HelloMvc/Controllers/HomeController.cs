@@ -20,7 +20,7 @@ namespace Sube2.HelloMvc.Controllers
         {
             return View();
         }
-        // Ýstatistikleri döndüren metod
+  
         [HttpGet]
         public IActionResult GetStatistics()
         {
